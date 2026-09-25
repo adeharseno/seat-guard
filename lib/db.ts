@@ -1,7 +1,9 @@
 import Database from "better-sqlite3";
 import path from "path";
 
-const DB_PATH = path.join(process.cwd(), "seatguard.sqlite");
+// Tests point this at a throwaway file so they never touch dev data.
+const DB_PATH =
+  process.env.SEATGUARD_DB_PATH || path.join(process.cwd(), "seatguard.sqlite");
 
 export const db = new Database(DB_PATH);
 db.pragma("journal_mode = WAL");
